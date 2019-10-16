@@ -9,20 +9,21 @@ const PORT = process.env.API_PORT || 8888;
 app.use(bodyParser.json());
 app.use(cors());
 
+
 const jwtCheck = expressjwt({
     secret: "mysupersecretkey"
 });
 
 app.get("/resource", (req, res) => {
     res
-    .status(200)
-    .send("Public resource, you can see this");
+        .status(200)
+        .send("Public resource, you can see this");
 });
 
 app.get("/resource/secret", jwtCheck, (req, res) => {
     res
-    .status(200)
-    .send("Secret resource, you should be logged in to see this");
+        .status(200)
+        .send("Secret resource, you should be logged in to see this");
 });
 
 app.get("*", (req, res) => {
